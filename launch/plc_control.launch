@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="respawn" default="true" />
+  
+  <!-- run teleop_plc -->  
+  <node pkg="mw_mitsubishi_plc_interface" type="plc_controller.py" name="plc_controller" output="screen" respawn="$(arg respawn)">
+    <param name = "odom_pub_rate"         type = "double" value = "100" />
+    <param name = "plc_port"              type = "int"    value = "8888" />
+    <rosparam command="load" file="$(find mw_mitsubishi_plc_interface)/config/motor_config.yaml" />
+  </node>
+</launch>
